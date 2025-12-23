@@ -9,14 +9,19 @@
       @update:page="onPageChange"
       @reload="onReload"
     />
+    <transition name="fade">
+      <BaseLoading v-if="loading" :fixed="true" />
+    </transition>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import Filters from '@/components/Filters/index.vue';
 import ProjectTable from '@/components/Project/Table.vue';
 import Pagination from '@/components/Pagination/index.vue';
+import BaseLoading from '@/components/Base/Loading.vue';
+import { useFetchData } from '@/composables/useFetchData';
 
 defineOptions({
   name: 'Project',
@@ -25,7 +30,6 @@ defineOptions({
 // >>> pagination
 const page = ref(1);
 const limit = ref(5);
-const total = computed(() => tableBody.value.length);
 
 const onPageChange = value => {
   page.value = value;
@@ -34,11 +38,9 @@ const onReload = () => {
   page.value = 1;
 };
 
-// >>> table
-const users = ref([]);
-const agents = ref([]);
-const sponsors = ref([]);
-const statuses = ref([]);
+const { users, agents, sponsors, statuses, totalUsers, loading } = useFetchData(page, limit);
+const total = computed(() => totalUsers.value);
+
 const tableHead = [
   {
     id: 1,
@@ -126,13 +128,11 @@ const tableHead = [
     slug: 'lei',
   },
 ];
-// re-check !!!
 const tableBody = computed(() => {
   return users.value.map(user => {
     return tableHead.map(column => {
       let value = user[column.slug] || '';
 
-      // Map agent and sponsor IDs to names
       if (column.slug === 'agent' && user.agentId) {
         const agent = agents.value.find(a => a.id === user.agentId);
         value = agent?.surname || '';
@@ -301,59 +301,6 @@ const filters = computed(() => {
       ...filter,
     };
   });
-});
-
-// >>> api requests
-const fetchUsers = async () => {
-  try {
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    const usersData = await import('@/seeders/users.json');
-    users.value = usersData.users;
-    console.log('fetched users:', users.value);
-  } catch (error) {
-    console.error('Error loading users:', error);
-  }
-};
-const fetchAgents = async () => {
-  try {
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    const agentsData = await import('@/seeders/agents.json');
-    agents.value = agentsData.agents;
-    console.log('fetched agents:', agents.value);
-  } catch (error) {
-    console.error('Error loading users:', error);
-  }
-};
-const fetchSponsors = async () => {
-  try {
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    const sponsorsData = await import('@/seeders/sponsors.json');
-    sponsors.value = sponsorsData.sponsors;
-    console.log('fetched sponsors:', sponsors.value);
-  } catch (error) {
-    console.error('Error loading sponsors:', error);
-  }
-};
-const fetchStatuses = async () => {
-  try {
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    const statusData = await import('@/seeders/statuses.json');
-    statuses.value = statusData.statuses;
-    console.log('fetched statuses:', statuses.value);
-  } catch (error) {
-    console.error('Error loading statuses:', error);
-  }
-};
-const fetchData = async () => {
-  await Promise.all([fetchUsers(), fetchAgents(), fetchSponsors(), fetchStatuses()]);
-  // await fetchUsers();
-  // await fetchAgents();
-  // await fetchSponsors();
-  // await fetchStatuses();
-};
-
-onMounted(async () => {
-  await fetchData();
 });
 </script>
 

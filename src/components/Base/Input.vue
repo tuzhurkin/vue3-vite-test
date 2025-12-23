@@ -9,6 +9,8 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :value="modelValue"
+    :min="min"
+    :max="max"
     @input="input"
     @focus="focus"
     @blur="blur"
@@ -55,23 +57,47 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  min: {
+    type: [Number, undefined],
+    default: undefined,
+  },
+  max: {
+    type: [Number, undefined],
+    default: undefined,
+  },
 });
 
 const emit = defineEmits(['update:modelValue', 'focus', 'blur']);
 
 const inputRef = ref(null);
-const isFocused = ref(false);
+
+const isNumberInputValid = value => {
+  if (!(props.type === 'number' && value !== '')) return false;
+
+  const numValue = Number(value);
+  if (isNaN(numValue)) return false;
+  if (props.max !== undefined && numValue > props.max) return false;
+  if (props.min !== undefined && numValue < props.min) return false;
+  return true;
+};
 
 const input = event => {
   const target = event.target;
-  emit('update:modelValue', target.value);
+  let value = target.value;
+
+  if (props.type === 'number') {
+    if (!isNumberInputValid(value)) {
+      target.value = props.modelValue;
+      return;
+    }
+  }
+
+  emit('update:modelValue', value);
 };
 const focus = () => {
-  isFocused.value = true;
   emit('focus');
 };
 const blur = () => {
-  if (!props.modelValue) isFocused.value = false;
   emit('blur');
 };
 </script>

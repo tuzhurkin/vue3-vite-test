@@ -81,20 +81,6 @@ a {
   }
 }
 
-p {
-  margin-top: 0;
-  &:last-child {
-    margin: 0;
-  }
-}
-
 .router-link-active {
   cursor: default;
-}
-
-.loading {
-  user-select: none;
-  opacity: 0.5;
-  pointer-events: none;
-  transition: 0.3s;
 }
