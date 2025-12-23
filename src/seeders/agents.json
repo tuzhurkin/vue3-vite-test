@@ -1,0 +1,39 @@
+{
+  "agents": [
+    {
+      "id": 1,
+      "name": "Agent",
+      "patronymic": "1",
+      "surname": "Great",
+      "fullname": "Agent 1 Great",
+      "birthDate": "1990-01-01",
+      "passport": "AB123578",
+      "phone": "+380991234567",
+      "email": "agent1@great.com"
+    },
+    {
+      "id": 2,
+      "name": "Agent",
+      "patronymic": "2",
+      "surname": "Wonderful",
+      "fullname": "Agent 2 Wonderful",
+      "birthDate": "1990-01-01",
+      "passport": "AB123578",
+      "phone": "+380991234567",
+      "email": "agent2@wonderful.com"
+    },
+    {
+      "id": 3,
+      "name": "Agent",
+      "patronymic": "3",
+      "surname": "Amazing",
+      "fullname": "Agent 3 Amazing",
+      "birthDate": "1990-01-01",
+      "passport": "AB123578",
+      "phone": "+380991234567",
+      "email": "agent3@amazing.com"
+    }
+  ],
+  "limit": 3,
+  "total": 3
+}
