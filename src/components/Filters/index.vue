@@ -158,12 +158,24 @@ const buttons = [
     grid-template-columns: repeat(4, minmax(0, 1fr));
     column-gap: 32px;
     row-gap: 12px;
+
+    @media (max-width: $md) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: $sm) {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
   .buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 12px;
+
+    @media (max-width: $sm) {
+      flex-direction: column;
+    }
   }
 }
 </style>

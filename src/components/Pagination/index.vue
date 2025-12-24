@@ -10,7 +10,7 @@
         />
         <BaseButton type="icony" icon="chevron-left" @click="onPrevClick" :disabled="page === 1" />
       </div>
-      <div class="part">
+      <div class="part count">
         <PageCount :currentPage="page" :totalPages="totalPages" @update:page="onPageChange" />
       </div>
       <div class="part">
@@ -98,13 +98,23 @@ const displayText = computed(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   padding: 8px;
   border: 1px solid $color-grey-500;
+
+  @media (max-width: $sm) {
+    flex-direction: column;
+  }
 
   .controls {
     display: flex;
     align-items: center;
     gap: 8px;
+
+    @media (max-width: $sm) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
     .part {
       position: relative;
@@ -123,6 +133,18 @@ const displayText = computed(() => {
           width: 1px;
           height: 60%;
           border-right: 2px solid $color-grey-110;
+        }
+      }
+
+      @media (max-width: $sm) {
+        &.count {
+          order: 1;
+          flex-basis: 100%;
+          justify-content: center;
+          padding-right: 0;
+          &::after {
+            display: none;
+          }
         }
       }
     }

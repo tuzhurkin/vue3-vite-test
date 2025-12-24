@@ -1,22 +1,27 @@
 <template>
   <div class="project">
-    <Filters
-      :filters="filtersData"
-      @applyFilters="onApplyFilters"
-      @resetFilters="onResetFilters"
-      @resetSortings="onResetSortings"
-    />
-    <ProjectTable :head="tableHead" :body="tableBody" :foot="tableFoot" :empty="isDataEmpty" />
-    <Pagination
-      :page="page"
-      :limit="limit"
-      :total="total"
-      @update:page="setPage"
-      @reload="resetPage"
-    />
-    <transition name="fade">
-      <BaseLoading v-if="loading" :fixed="true" />
-    </transition>
+    <div class="header">
+      <h1 class="title">Займы</h1>
+    </div>
+    <div class="content">
+      <Filters
+        :filters="filtersData"
+        @applyFilters="onApplyFilters"
+        @resetFilters="onResetFilters"
+        @resetSortings="onResetSortings"
+      />
+      <ProjectTable :head="tableHead" :body="tableBody" :foot="tableFoot" :empty="isDataEmpty" />
+      <Pagination
+        :page="page"
+        :limit="limit"
+        :total="total"
+        @update:page="setPage"
+        @reload="resetPage"
+      />
+      <transition name="fade">
+        <BaseLoading v-if="loading" :fixed="true" />
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -57,12 +62,33 @@ const { tableHead, tableBody, tableFoot } = useTableContents(
 
 <style scoped lang="scss">
 .project {
-  padding: 16px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  margin: 16px;
+  border: 1px solid $color-grey-500;
+  border-radius: 8px 8px 0 0;
+
+  .header {
+    padding: 8px 16px;
+    background-color: $color-grey-100;
+    border-bottom: 1px solid $color-grey-500;
+
+    .title {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 150%;
+      color: $color-black;
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
 
   .filters {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 }
 </style>
