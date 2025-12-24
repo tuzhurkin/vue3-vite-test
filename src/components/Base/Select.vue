@@ -1,5 +1,5 @@
 <template>
-  <div class="select" :class="{ active: open }" v-on-click-outside="onClickOutside">
+  <div class="select" :class="{ active: open, focused }" v-on-click-outside="onClickOutside">
     <div
       class="trigger"
       :tabindex="disabled ? -1 : 0"
@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
 import BaseIcon from '@/components/Base/Icon.vue';
 
@@ -68,6 +68,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'change']);
 
 const open = ref(false);
+const focused = ref(false);
 
 const isSelected = value => {
   return props.modelValue === value;
@@ -94,6 +95,13 @@ const selectOption = option => {
   emit('change', option);
   open.value = false;
 };
+
+watch(
+  () => props.modelValue,
+  value => {
+    focused.value = Boolean(value);
+  }
+);
 </script>
 
 <style scoped lang="scss">
@@ -132,6 +140,18 @@ const selectOption = option => {
       :deep(.icon) {
         transform: rotate(180deg);
 
+        path {
+          stroke: $color-black;
+        }
+      }
+    }
+  }
+
+  &.focused {
+    .trigger {
+      border-color: $color-black;
+
+      :deep(.icon) {
         path {
           stroke: $color-black;
         }

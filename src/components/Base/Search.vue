@@ -12,12 +12,12 @@
       @focus="focus"
       @blur="blur"
     />
-    <BaseButton type="texted" icon="search" :tabindex="-1" />
+    <BaseButton type="texted" icon="search" disabled />
   </label>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import BaseInput from '@/components/Base/Input.vue';
 import BaseButton from '@/components/Base/Button.vue';
 
@@ -68,8 +68,15 @@ const focus = () => {
 };
 
 const blur = () => {
-  focused.value = false;
+  if (!props.modelValue) focused.value = false;
 };
+
+watch(
+  () => props.modelValue,
+  value => {
+    focused.value = Boolean(value);
+  }
+);
 </script>
 
 <style scoped lang="scss">

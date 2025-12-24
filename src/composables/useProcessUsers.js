@@ -1,6 +1,10 @@
 import { ref, onMounted, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 export const useProcessUsers = () => {
+  const route = useRoute();
+  const router = useRouter();
+
   const loading = ref(false);
   const users = ref([]);
 
@@ -198,6 +202,7 @@ export const useProcessUsers = () => {
       if (filter) filter.value = appliedFilter.value;
     });
     resetPage();
+    setFiltersToURL();
   };
 
   const onResetFilters = () => {
@@ -205,6 +210,7 @@ export const useProcessUsers = () => {
       if (filter.filterType === 'search') filter.value = '';
     });
     resetPage();
+    setFiltersToURL();
   };
 
   const onResetSortings = () => {
@@ -212,6 +218,24 @@ export const useProcessUsers = () => {
       if (filter.filterType === 'sorting') filter.value = '';
     });
     resetPage();
+    setFiltersToURL();
+  };
+
+  // set filters from URL query parameters on page load
+  const loadFiltersFromURL = () => {
+    const query = route.query;
+    filtersData.value.forEach(filter => {
+      if (query[filter.idx]) filter.value = query[filter.idx];
+    });
+  };
+
+  // set filters to URL query parameters on filter change
+  const setFiltersToURL = () => {
+    const query = {};
+    filtersData.value.forEach(filter => {
+      if (filter.value) query[filter.idx] = filter.value;
+    });
+    router.push({ query });
   };
 
   // mocked api request to fetch users
@@ -230,6 +254,7 @@ export const useProcessUsers = () => {
   };
 
   onMounted(async () => {
+    loadFiltersFromURL();
     await fetchUsers();
   });
 

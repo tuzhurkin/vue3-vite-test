@@ -72,14 +72,27 @@ const onSortingUpdate = (value, idx) => {
   if (filter) filter.value = value;
 };
 
+const isFilterApplied = (filterType = null) => {
+  const hasLocalValues = localFilters.value.some(filter =>
+    filterType ? filter.filterType === filterType && filter.value : filter.value
+  );
+  const hasAppliedValues = props.filters.some(filter =>
+    filterType ? filter.filterType === filterType && filter.value : filter.value
+  );
+  return hasLocalValues || hasAppliedValues;
+};
+
 const isButtonDisabled = slug => {
   switch (slug) {
-    case 'apply':
-      return localFilters.value.every(filter => !filter.value);
-    case 'reset-filters':
-      return !localFilters.value.some(filter => filter.filterType === 'search' && filter.value);
-    case 'reset-sortings':
-      return !localFilters.value.some(filter => filter.filterType === 'sorting' && filter.value);
+    case 'apply': {
+      return !isFilterApplied();
+    }
+    case 'reset-filters': {
+      return !isFilterApplied('search');
+    }
+    case 'reset-sortings': {
+      return !isFilterApplied('sorting');
+    }
     default:
       return true; // temporarily disable another buttons due to the lack of their functionality
   }

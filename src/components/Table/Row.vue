@@ -39,7 +39,7 @@ tr {
 
   &.empty {
     height: 250px;
-    background-color: $color-grey-500;
+    background-color: $color-grey-200;
   }
 }
 </style>
