@@ -11,7 +11,7 @@ html {
   font-style: normal;
   font-weight: 500;
   color: $color-grey-text;
-  background-color: $color-grey-100;
+  background-color: $color-white;
   font-size: 20px;
   line-height: 150%;
   -webkit-text-size-adjust: 100%;
@@ -31,6 +31,18 @@ input,
 button,
 textarea {
   -webkit-appearance: none;
+}
+
+input {
+  // hide arrows for number input
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
 }
 
 * {

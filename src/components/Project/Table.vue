@@ -5,7 +5,10 @@
         <TableRow :cells="head" :isBody="false" />
       </template>
       <template #body>
-        <TableRow v-for="(row, index) in body" :key="index" :cells="row" :isBody="true" />
+        <template v-if="!empty">
+          <TableRow v-for="(row, index) in body" :key="index" :cells="row" :isBody="true" />
+        </template>
+        <TableRow v-else :cells="emptyRowCells" :isBody="true" :empty="true" />
       </template>
       <template #foot>
         <TableRow :cells="foot" :isBody="false" />
@@ -15,6 +18,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import Table from '@/components/Table/index.vue';
 import TableRow from '@/components/Table/Row.vue';
 
@@ -22,7 +26,7 @@ defineOptions({
   name: 'ProjectTable',
 });
 
-defineProps({
+const props = defineProps({
   head: {
     type: Array,
     default: () => [],
@@ -35,6 +39,14 @@ defineProps({
     type: Array,
     default: () => [],
   },
+  empty: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const emptyRowCells = computed(() => {
+  return [{ name: 'No data found', colspan: props.head.length }];
 });
 </script>
 

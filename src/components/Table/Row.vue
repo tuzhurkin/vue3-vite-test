@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr :class="{ empty }">
     <TableCell
       v-for="(cell, index) in cells"
       :key="index"
@@ -26,11 +26,20 @@ defineProps({
     type: Boolean,
     default: true,
   },
+  empty: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
 <style scoped lang="scss">
 tr {
   border-top: 1px solid $color-grey-500;
+
+  &.empty {
+    height: 250px;
+    background-color: $color-grey-500;
+  }
 }
 </style>

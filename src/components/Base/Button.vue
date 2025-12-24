@@ -38,7 +38,7 @@ defineProps({
     default: 'primary',
   },
   text: {
-    type: [String, null, Number],
+    type: [String, Number, null],
     default: null,
   },
   to: {
@@ -124,8 +124,8 @@ button,
 
     font-family: $main-font;
     font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 16px;
     line-height: 150%;
     color: $color-white;
 
@@ -191,6 +191,7 @@ button,
     &.disabled {
       pointer-events: none;
       cursor: default;
+      color: $color-grey-disabled;
       border-color: $color-grey-500;
       background-color: $color-white;
       :deep(.icon) {
@@ -217,22 +218,6 @@ button,
       border-color $transition ease,
       transform $transition ease;
 
-    font-family: $main-font;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 150%;
-    color: $color-white;
-
-    span {
-      font-family: inherit;
-      font-style: inherit;
-      font-weight: inherit;
-      font-size: inherit;
-      line-height: inherit;
-      letter-spacing: inherit;
-      color: inherit;
-    }
     :deep(.icon) {
       width: 24px;
       height: 24px;
@@ -249,7 +234,7 @@ button,
       }
     }
     @include hover {
-      background-color: $color-grey-110;
+      background-color: $color-white;
       :deep(.icon) {
         path[stroke] {
           stroke: $color-grey-120;
@@ -260,7 +245,7 @@ button,
       }
     }
     &:focus {
-      background-color: $color-grey-110;
+      background-color: $color-white;
       :deep(.icon) {
         path[stroke] {
           stroke: $color-grey-120;
@@ -272,7 +257,7 @@ button,
     }
     &:active {
       transform: scale(0.97);
-      background-color: $color-grey-110;
+      background-color: $color-white;
       :deep(.icon) {
         path[stroke] {
           stroke: $color-grey-120;
@@ -303,8 +288,8 @@ button,
     column-gap: 6px;
     font-family: $main-font;
     font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 16px;
     line-height: 150%;
     color: $color-grey-500;
     transition: color $transition ease;

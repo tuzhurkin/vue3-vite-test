@@ -11,11 +11,11 @@
       "phone": "+380991234567",
       "email": "john.doe@example.com",
       "lei": "1234567890",
-      "contractNumber": "+380991234567",
+      "contractNumber": "2313567",
       "productionNumber": "1234567890",
       "debtAmount": 1000,
-      "agentId": 2,
-      "sponsorId": 3,
+      "agent": "Agent 002",
+      "sponsor": "Мінченко Олександр Васильович",
       "status": "active"
     },
     {
@@ -29,12 +29,12 @@
       "phone": "+380671234567",
       "email": "oleksandr.kovalenko@example.com",
       "lei": "2345678901",
-      "contractNumber": "+380671234567",
+      "contractNumber": "1265613567",
       "productionNumber": "2345678901",
       "debtAmount": 2000,
-      "agentId": 2,
-      "sponsorId": 1,
-      "status": "active"
+      "agent": "Agent 003",
+      "sponsor": "Ковальов Микола Іванович",
+      "status": "paused"
     },
     {
       "id": 3,
@@ -47,11 +47,11 @@
       "phone": "+380501234567",
       "email": "maria.rodriguez@example.com",
       "lei": "3456789012",
-      "contractNumber": "+380501234567",
+      "contractNumber": "8781378921",
       "productionNumber": "3456789012",
       "debtAmount": 1000,
-      "agentId": 3,
-      "sponsorId": 2,
+      "agent": "Agent 003",
+      "sponsor": "Ковальов Микола Ярославович",
       "status": "inactive"
     },
     {
@@ -65,11 +65,11 @@
       "phone": "+380931234567",
       "email": "dmytro.shevchenko@example.com",
       "lei": "4567890123",
-      "contractNumber": "+380931234567",
+      "contractNumber": "819832712",
       "productionNumber": "4567890123",
       "debtAmount": 2001,
-      "agentId": 1,
-      "sponsorId": 1,
+      "agent": "Agent 002",
+      "sponsor": "Дорогий Дмитро Петрович",
       "status": "active"
     },
     {
@@ -83,11 +83,11 @@
       "phone": "+380631234567",
       "email": "anna.schmidt@example.com",
       "lei": "5678901234",
-      "contractNumber": "+380631234567",
+      "contractNumber": "901209182",
       "productionNumber": "5678901234",
       "debtAmount": 3000,
-      "agentId": 3,
-      "sponsorId": 3,
+      "agent": "Agent 001",
+      "sponsor": "Гончаренко Анна Маріївна",
       "status": "active"
     },
     {
@@ -101,12 +101,12 @@
       "phone": "+380971234567",
       "email": "iryna.bondarenko@example.com",
       "lei": "6789012345",
-      "contractNumber": "+380971234567",
+      "contractNumber": "9903203",
       "productionNumber": "6789012345",
       "debtAmount": 59,
-      "agentId": 15,
-      "sponsorId": 15,
-      "status": "pending"
+      "agent": "Agent 002",
+      "sponsor": "Бондаренко Ірина Володимирівна",
+      "status": "completed"
     },
     {
       "id": 7,
@@ -119,12 +119,12 @@
       "phone": "+380661234567",
       "email": "ahmed.ali@example.com",
       "lei": "7890123456",
-      "contractNumber": "+380661234567",
+      "contractNumber": "568126378",
       "productionNumber": "7890123456",
       "debtAmount": 70000,
-      "agentId": 2,
-      "sponsorId": 3,
-      "status": "active"
+      "agent": "Agent 003",
+      "sponsor": "Аліхан Ахмед Хасан",
+      "status": "completed"
     },
     {
       "id": 8,
@@ -137,12 +137,12 @@
       "phone": "+380951234567",
       "email": "kateryna.melnyk@example.com",
       "lei": "8901234567",
-      "contractNumber": "+380951234567",
+      "contractNumber": "12879129",
       "productionNumber": "8901234567",
       "debtAmount": 8,
-      "agentId": 1,
-      "sponsorId": 1,
-      "status": "active"
+      "agent": "Agent 002",
+      "sponsor": "Дорогий Дмитро Петрович",
+      "status": "cancelled"
     },
     {
       "id": 9,
@@ -155,11 +155,11 @@
       "phone": "+380681234567",
       "email": "liam.oconnor@example.com",
       "lei": "9012345678",
-      "contractNumber": "+380681234567",
+      "contractNumber": "18271987",
       "productionNumber": "9012345678",
       "debtAmount": 0.9,
-      "agentId": 3,
-      "sponsorId": 2,
+      "agent": "Agent 003",
+      "sponsor": "Дорогий Дмитро Петрович",
       "status": "inactive"
     },
     {
@@ -173,11 +173,11 @@
       "phone": "+380731234567",
       "email": "serhiy.tkachenko@example.com",
       "lei": "0123456789",
-      "contractNumber": "+380731234567",
+      "contractNumber": "321y33i2",
       "productionNumber": "0123456789",
       "debtAmount": 1000,
-      "agentId": 19,
-      "sponsorId": 19,
+      "agent": "Agent 002",
+      "sponsor": "Ковальов Микола Ярославович",
       "status": "active"
     },
     {
@@ -191,12 +191,12 @@
       "phone": "+380981234567",
       "email": "sophie.martin@example.com",
       "lei": "1357924680",
-      "contractNumber": "+380981234567",
+      "contractNumber": "817817678",
       "productionNumber": "1357924680",
       "debtAmount": 500,
-      "agentId": 20,
-      "sponsorId": 3,
-      "status": "pending"
+      "agent": "Agent 001",
+      "sponsor": "Дорогий Дмитро Петрович",
+      "status": "completed"
     },
     {
       "id": 12,
@@ -209,11 +209,11 @@
       "phone": "+380961234567",
       "email": "andriy.lysenko@example.com",
       "lei": "2468013579",
-      "contractNumber": "+380961234567",
+      "contractNumber": "123321123321123",
       "productionNumber": "2468013579",
       "debtAmount": 111,
-      "agentId": 21,
-      "sponsorId": 21,
+      "agent": "Agent 002",
+      "sponsor": "Мінченко Олександр Васильович",
       "status": "active"
     },
     {
@@ -227,12 +227,12 @@
       "phone": "+380991345678",
       "email": "natalia.morozova@example.com",
       "lei": "4826159370",
-      "contractNumber": "+380991345678",
+      "contractNumber": "123321123321123",
       "productionNumber": "4826159370",
       "debtAmount": 1500,
-      "agentId": 2,
-      "sponsorId": 1,
-      "status": "active"
+      "agent": "Agent 001",
+      "sponsor": "Мінченко Олександр Васильович",
+      "status": "completed"
     },
     {
       "id": 14,
@@ -245,12 +245,12 @@
       "phone": "+380671345678",
       "email": "thomas.anderson@example.com",
       "lei": "5937148260",
-      "contractNumber": "+380671345678",
+      "contractNumber": "65688",
       "productionNumber": "5937148260",
       "debtAmount": 2500,
-      "agentId": 3,
-      "sponsorId": 2,
-      "status": "pending"
+      "agent": "Agent 002",
+      "sponsor": "Дорогий Дмитро Петрович",
+      "status": "completed"
     },
     {
       "id": 15,
@@ -263,12 +263,12 @@
       "phone": "+380501345678",
       "email": "olena.romanenko@example.com",
       "lei": "6048271593",
-      "contractNumber": "+380501345678",
+      "contractNumber": "11111111111",
       "productionNumber": "6048271593",
       "debtAmount": 500,
-      "agentId": 1,
-      "sponsorId": 3,
-      "status": "active"
+      "agent": "Agent 003",
+      "sponsor": "Гончаренко Анна Маріївна",
+      "status": "paused"
     },
     {
       "id": 16,
@@ -281,11 +281,11 @@
       "phone": "+380931345678",
       "email": "isabella.taylor@example.com",
       "lei": "7159382604",
-      "contractNumber": "+380931345678",
+      "contractNumber": "55555555555",
       "productionNumber": "7159382604",
       "debtAmount": 12000,
-      "agentId": 2,
-      "sponsorId": 2,
+      "agent": "Agent 002",
+      "sponsor": "Бондаренко Ірина Володимирівна",
       "status": "inactive"
     },
     {
@@ -299,12 +299,12 @@
       "phone": "+380631345678",
       "email": "vasyl.kravchenko@example.com",
       "lei": "8260493715",
-      "contractNumber": "+380631345678",
+      "contractNumber": "788787878787878",
       "productionNumber": "8260493715",
       "debtAmount": 7000,
-      "agentId": 1,
-      "sponsorId": 1,
-      "status": "active"
+      "agent": "Agent 001",
+      "sponsor": "Мінченко Олександр Васильович",
+      "status": "paused"
     },
     {
       "id": 18,
@@ -317,11 +317,11 @@
       "phone": "+380971345678",
       "email": "lucas.silva@example.com",
       "lei": "9371504826",
-      "contractNumber": "+380971345678",
+      "contractNumber": "90",
       "productionNumber": "9371504826",
       "debtAmount": 890,
-      "agentId": 3,
-      "sponsorId": 1,
+      "agent": "Agent 002",
+      "sponsor": "Ковальов Микола Іванович",
       "status": "active"
     },
     {
@@ -335,11 +335,11 @@
       "phone": "+380661456789",
       "email": "yulia.honcharova@example.com",
       "lei": "0482615937",
-      "contractNumber": "+380661456789",
+      "contractNumber": "89856898",
       "productionNumber": "0482615937",
       "debtAmount": 3200,
-      "agentId": 2,
-      "sponsorId": 3,
+      "agent": "Agent 003",
+      "sponsor": "Гончаренко Анна Маріївна",
       "status": "active"
     },
     {
@@ -353,12 +353,12 @@
       "phone": "+380681456789",
       "email": "emma.johnson@example.com",
       "lei": "1593726048",
-      "contractNumber": "+380681456789",
+      "contractNumber": "323232323232",
       "productionNumber": "1593726048",
       "debtAmount": 750,
-      "agentId": 1,
-      "sponsorId": 2,
-      "status": "pending"
+      "agent": "Agent 002",
+      "sponsor": "Ковальов Микола Іванович",
+      "status": "completed"
     },
     {
       "id": 21,
@@ -371,11 +371,11 @@
       "phone": "+380731456789",
       "email": "viktor.polishchuk@example.com",
       "lei": "2604837159",
-      "contractNumber": "+380731456789",
+      "contractNumber": "1",
       "productionNumber": "2604837159",
       "debtAmount": 15000,
-      "agentId": 3,
-      "sponsorId": 1,
+      "agent": "Agent 003",
+      "sponsor": "Ковальов Микола Іванович",
       "status": "active"
     },
     {
@@ -389,12 +389,12 @@
       "phone": "+380981456789",
       "email": "tetiana.savchenko@example.com",
       "lei": "3715948260",
-      "contractNumber": "+380981456789",
+      "contractNumber": "871",
       "productionNumber": "3715948260",
       "debtAmount": 250,
-      "agentId": 1,
-      "sponsorId": 3,
-      "status": "active"
+      "agent": "Agent 002",
+      "sponsor": "Мінченко Олександр Васильович",
+      "status": "cancelled"
     },
     {
       "id": 23,
@@ -407,11 +407,11 @@
       "phone": "+380961456789",
       "email": "oliver.brown@example.com",
       "lei": "4826037159",
-      "contractNumber": "+380961456789",
+      "contractNumber": "999",
       "productionNumber": "4826037159",
       "debtAmount": 5600,
-      "agentId": 2,
-      "sponsorId": 2,
+      "agent": "Agent 001",
+      "sponsor": "Ковальов Микола Ярославович",
       "status": "inactive"
     }
   ],

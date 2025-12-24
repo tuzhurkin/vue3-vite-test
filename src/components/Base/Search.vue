@@ -7,13 +7,12 @@
       :autocomplete="autocomplete"
       :placeholder="placeholder"
       :disabled="disabled"
-      :error="error"
       :modelValue="modelValue"
       @update:modelValue="updateModelValue"
       @focus="focus"
       @blur="blur"
     />
-    <BaseButton type="texted" icon="search" />
+    <BaseButton type="texted" icon="search" :tabindex="-1" />
   </label>
 </template>
 
@@ -26,7 +25,7 @@ defineOptions({
   name: 'BaseSearch',
 });
 
-defineProps({
+const props = defineProps({
   idx: {
     type: String,
     default: '',
@@ -55,17 +54,13 @@ defineProps({
     type: Boolean,
     default: false,
   },
-  error: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 const emit = defineEmits(['update:modelValue', 'focus', 'blur']);
 const focused = ref(false);
 
 const updateModelValue = value => {
-  emit('update:modelValue', value);
+  emit('update:modelValue', value, props.idx);
 };
 
 const focus = () => {
@@ -91,6 +86,14 @@ const blur = () => {
 
     :deep(.btn) {
       border-color: $color-black;
+      .icon {
+        path[stroke] {
+          stroke: $color-black;
+        }
+        path[fill] {
+          fill: $color-black;
+        }
+      }
     }
   }
 

@@ -1,7 +1,6 @@
 <template>
   <input
     ref="inputRef"
-    :class="{ error }"
     :id="idx"
     :name="name"
     :type="type"
@@ -50,10 +49,6 @@ const props = defineProps({
     default: null,
   },
   disabled: {
-    type: Boolean,
-    default: false,
-  },
-  error: {
     type: Boolean,
     default: false,
   },
@@ -117,28 +112,6 @@ input {
   color: $color-black;
   outline: none;
   border: none;
-  // border-bottom: 1.5px solid $color-black;
   background-color: transparent;
-  transition: border-color $transition ease;
-
-  // // reset autocomplete styles
-  // &:-webkit-autofill,
-  // &:-webkit-autofill:hover,
-  // &:-webkit-autofill:focus,
-  // &:-webkit-autofill:active {
-  //   // background-color: $color-grey-750;
-  //   -webkit-text-fill-color: $color-grey-500;
-  //   -webkit-box-shadow: 0 0 0px 1000px $color-grey-500 inset;
-  //   // transition: background-color 5000s ease-in-out 0s;
-  //   font-family: $main-font;
-  //   font-weight: 400;
-  //   font-size: 16px;
-  //   line-height: 120%;
-  //   letter-spacing: -0.28px;
-  // }
-
-  // &.error {
-  //   border-color: $color-error;
-  // }
 }
 </style>

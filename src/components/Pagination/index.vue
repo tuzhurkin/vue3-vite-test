@@ -31,9 +31,7 @@
         <BaseButton type="icony" icon="reload" @click="onReloadClick" />
       </div>
     </div>
-    <div class="display">
-      Displaying {{ minCurrentLimit }} - {{ maxCurrentLimit }} of {{ total }} items
-    </div>
+    <div class="display">{{ displayText }}</div>
   </div>
 </template>
 
@@ -87,6 +85,12 @@ const onLastClick = () => {
 const onReloadClick = () => {
   emit('reload');
 };
+
+const displayText = computed(() => {
+  return props.total > 0
+    ? `Displaying ${minCurrentLimit.value} - ${maxCurrentLimit.value} of ${props.total} items`
+    : 'No items found';
+});
 </script>
 
 <style scoped lang="scss">
