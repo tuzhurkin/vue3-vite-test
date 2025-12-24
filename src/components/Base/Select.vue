@@ -1,13 +1,10 @@
 <template>
-  <div class="select" :class="{ active: open, focused }" v-on-click-outside="onClickOutside">
-    <div
-      class="trigger"
-      :tabindex="disabled ? -1 : 0"
-      @click="toggle"
-      @keydown.enter="toggle"
-      @keydown.space.prevent="toggle"
-      @keydown.escape="open = false"
-    >
+  <div
+    class="select"
+    :class="[{ active: open, focused, disabled }, direction]"
+    v-on-click-outside="onClickOutside"
+  >
+    <div class="trigger" :tabindex="disabled ? -1 : 0" @click="toggle">
       <span class="value">{{ displayValue }}</span>
       <BaseIcon name="chevron-down" />
     </div>
@@ -30,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
 import BaseIcon from '@/components/Base/Icon.vue';
 
@@ -63,12 +60,23 @@ const props = defineProps({
     type: [String, Number, null],
     default: null,
   },
+  focused: {
+    type: Boolean,
+    default: false,
+  },
+  direction: {
+    type: String,
+    default: 'bottom', // 'bottom' | 'top'
+  },
+  triggerText: {
+    type: String,
+    default: '',
+  },
 });
 
 const emit = defineEmits(['update:modelValue', 'change']);
 
 const open = ref(false);
-const focused = ref(false);
 
 const isSelected = value => {
   return props.modelValue === value;
@@ -77,7 +85,10 @@ const isSelected = value => {
 const displayValue = computed(() => {
   if (!props.modelValue) return props.placeholder || '';
   const selected = props.options.find(option => option.value === props.modelValue);
-  return selected?.text || '';
+  const text = props.triggerText
+    ? `${props.triggerText} ${selected?.text || ''}`
+    : selected?.text || '';
+  return text;
 });
 
 const toggle = () => {
@@ -95,13 +106,6 @@ const selectOption = option => {
   emit('change', option);
   open.value = false;
 };
-
-watch(
-  () => props.modelValue,
-  value => {
-    focused.value = Boolean(value);
-  }
-);
 </script>
 
 <style scoped lang="scss">
@@ -159,11 +163,24 @@ watch(
     }
   }
 
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &.top {
+    .options {
+      top: auto;
+      bottom: calc(100% + 8px);
+    }
+  }
+
   .trigger {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    column-gap: 8px;
     width: 100%;
     height: 38px;
     padding: 8px 10px 8px 8px;

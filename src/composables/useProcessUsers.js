@@ -1,4 +1,4 @@
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 export const useProcessUsers = () => {
@@ -9,8 +9,10 @@ export const useProcessUsers = () => {
   const users = ref([]);
 
   // pagination
-  const page = ref(1);
-  const limit = ref(5);
+  const defaultPage = 1;
+  const defaultLimit = 5;
+  const page = ref(defaultPage);
+  const limit = ref(defaultLimit);
   const total = computed(() => filteredUsers.value.length);
   const currentPageCount = computed(() =>
     limit.value * page.value > total.value ? total.value : limit.value * page.value
@@ -20,7 +22,15 @@ export const useProcessUsers = () => {
     page.value = value;
   };
   const resetPage = () => {
-    page.value = 1;
+    page.value = defaultPage;
+  };
+  const setLimit = value => {
+    limit.value = value;
+    resetPage();
+  };
+  const resetLimit = () => {
+    limit.value = defaultLimit;
+    resetPage();
   };
 
   // filters for searching and sorting users
@@ -221,6 +231,10 @@ export const useProcessUsers = () => {
     setFiltersToURL();
   };
 
+  watch(total, value => {
+    if (limit.value > value || value === 0) resetLimit();
+  });
+
   // set filters from URL query parameters on page load
   const loadFiltersFromURL = () => {
     const query = route.query;
@@ -245,7 +259,6 @@ export const useProcessUsers = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       const usersData = await import('@/seeders/users.json');
       users.value = usersData.users;
-      console.log('fetched all users:', users.value.length);
     } catch (error) {
       console.error('Error loading users:', error);
     } finally {
@@ -268,6 +281,8 @@ export const useProcessUsers = () => {
     isDataEmpty,
     setPage,
     resetPage,
+    setLimit,
+    resetLimit,
     filtersData,
     filters,
     filteredUsers,

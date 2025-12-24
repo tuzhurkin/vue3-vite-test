@@ -17,6 +17,7 @@
         :total="total"
         @update:page="setPage"
         @reload="resetPage"
+        @update:limit="setLimit"
       />
       <transition name="fade">
         <BaseLoading v-if="loading" :fixed="true" />
@@ -46,6 +47,7 @@ const {
   isDataEmpty,
   setPage,
   resetPage,
+  setLimit,
   filtersData,
   paginatedUsers,
   onApplyFilters,
@@ -89,6 +91,10 @@ const { tableHead, tableBody, tableFoot } = useTableContents(
 
   .filters {
     margin-bottom: 12px;
+  }
+
+  .pagination {
+    border-top: none;
   }
 }
 </style>

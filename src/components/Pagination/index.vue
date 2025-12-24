@@ -6,9 +6,14 @@
           type="icony"
           icon="chevron-left-duo"
           @click="onFirstClick"
-          :disabled="page === 1"
+          :disabled="isPrevDisabled"
         />
-        <BaseButton type="icony" icon="chevron-left" @click="onPrevClick" :disabled="page === 1" />
+        <BaseButton
+          type="icony"
+          icon="chevron-left"
+          @click="onPrevClick"
+          :disabled="isPrevDisabled"
+        />
       </div>
       <div class="part count">
         <PageCount :currentPage="page" :totalPages="totalPages" @update:page="onPageChange" />
@@ -18,17 +23,25 @@
           type="icony"
           icon="chevron-right"
           @click="onNextClick"
-          :disabled="page === totalPages"
+          :disabled="isNextDisabled"
         />
         <BaseButton
           type="icony"
           icon="chevron-right-duo"
           @click="onLastClick"
-          :disabled="page === totalPages"
+          :disabled="isNextDisabled"
         />
       </div>
       <div class="part">
         <BaseButton type="icony" icon="reload" @click="onReloadClick" />
+      </div>
+      <div class="part">
+        <ShowLimit
+          :options="limitOptions"
+          :modelValue="limit"
+          :disabled="total === 0"
+          @update:modelValue="onLimitChange"
+        />
       </div>
     </div>
     <div class="display">{{ displayText }}</div>
@@ -39,6 +52,7 @@
 import { computed } from 'vue';
 import BaseButton from '@/components/Base/Button.vue';
 import PageCount from '@/components/Pagination/PageCount.vue';
+import ShowLimit from '@/components/Pagination/ShowLimit.vue';
 
 defineOptions({
   name: 'Pagination',
@@ -59,13 +73,15 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['update:page', 'reload']);
+const emit = defineEmits(['update:page', 'update:limit', 'reload']);
 
 const minCurrentLimit = computed(() => props.limit * (props.page - 1) + 1);
 const maxCurrentLimit = computed(() =>
   props.limit * props.page > props.total ? props.total : props.limit * props.page
 );
 const totalPages = computed(() => Math.ceil(props.total / props.limit));
+const isPrevDisabled = computed(() => props.page === 1 || props.total === 0);
+const isNextDisabled = computed(() => props.page === totalPages.value || props.total === 0);
 
 const onFirstClick = () => {
   emit('update:page', 1);
@@ -91,6 +107,19 @@ const displayText = computed(() => {
     ? `Displaying ${minCurrentLimit.value} - ${maxCurrentLimit.value} of ${props.total} items`
     : 'No items found';
 });
+
+const limitOptions = computed(() => {
+  const step = 5;
+  const options = [];
+  for (let i = step; i <= Math.max(props.total, props.total + step); i += step) {
+    options.push({ value: i, text: i });
+  }
+  return options;
+});
+
+const onLimitChange = value => {
+  emit('update:limit', value);
+};
 </script>
 
 <style scoped lang="scss">

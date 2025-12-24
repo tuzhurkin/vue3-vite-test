@@ -3,6 +3,7 @@
     :idx="idx"
     :name="name"
     :placeholder="placeholder"
+    :focused="focused"
     :options="options"
     :disabled="disabled"
     :modelValue="modelValue"
@@ -11,6 +12,7 @@
 </template>
 
 <script setup>
+import { ref, watch } from 'vue';
 import BaseSelect from '@/components/Base/Select.vue';
 
 defineOptions({
@@ -49,6 +51,15 @@ const emit = defineEmits(['update:modelValue']);
 const updateModelValue = value => {
   emit('update:modelValue', value, props.idx);
 };
+
+const focused = ref(false);
+
+watch(
+  () => props.modelValue,
+  value => {
+    focused.value = Boolean(value);
+  }
+);
 </script>
 
 <style scoped lang="scss"></style>
