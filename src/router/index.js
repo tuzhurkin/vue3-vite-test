@@ -1,6 +1,5 @@
 import MainPage from '@/views/index.vue';
-import ProjectPage from '@/views/project/index.vue';
-import InstructionsPage from '@/views/instructions/index.vue';
+import DescriptionPage from '@/views/description/index.vue';
 import NotFound from '@/views/notFound.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -15,20 +14,11 @@ const routes = [
     },
   },
   {
-    path: '/project',
-    name: 'ProjectPage',
-    component: ProjectPage,
+    path: '/description',
+    name: 'DescriptionPage',
+    component: DescriptionPage,
     meta: {
-      title: 'Project Page',
-      layout: 'DefaultLayout',
-    },
-  },
-  {
-    path: '/instructions',
-    name: 'InstructionsPage',
-    component: InstructionsPage,
-    meta: {
-      title: 'Instructions Page',
+      title: 'Description Page',
       layout: 'DefaultLayout',
     },
   },
@@ -36,9 +26,6 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound,
-    // meta: {
-    //   layout: 'NotFoundLayout',
-    // },
   },
 ];
 

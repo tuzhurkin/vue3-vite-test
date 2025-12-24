@@ -1,32 +1,24 @@
 <template>
   <div class="default-layout">
-    <!-- <Header /> -->
-    <header>
-      <h2>Header</h2>
-    </header>
+    <Header />
     <main>
       <slot />
     </main>
     <footer>
       <h2>Footer</h2>
     </footer>
-    <!-- <Footer /> -->
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import Header from '@/components/Header/index.vue';
+</script>
 
 <style lang="scss">
 .default-layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-  }
 
   main {
     flex: 1;
