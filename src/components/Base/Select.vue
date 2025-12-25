@@ -84,7 +84,7 @@ const isSelected = value => {
 
 const displayValue = computed(() => {
   if (!props.modelValue) return props.placeholder || '';
-  const selected = props.options.find(option => option.value === props.modelValue);
+  const selected = props.options.find(option => String(option.value) === String(props.modelValue));
   const text = props.triggerText
     ? `${props.triggerText} ${selected?.text || ''}`
     : selected?.text || '';

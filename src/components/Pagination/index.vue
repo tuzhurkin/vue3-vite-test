@@ -111,7 +111,7 @@ const displayText = computed(() => {
 const limitOptions = computed(() => {
   const step = 5;
   const options = [];
-  for (let i = step; i <= Math.max(props.total, props.total + step); i += step) {
+  for (let i = step; i < Math.max(props.total, props.total + step); i += step) {
     options.push({ value: i, text: i });
   }
   return options;
@@ -152,7 +152,7 @@ const onLimitChange = value => {
       gap: 8px;
 
       &:not(:last-child) {
-        padding-right: 8px;
+        padding-right: 10px;
 
         &::after {
           content: '';

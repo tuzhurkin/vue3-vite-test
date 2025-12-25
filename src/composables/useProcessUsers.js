@@ -191,6 +191,19 @@ export const useProcessUsers = () => {
     return users.value.filter(user => {
       return Object.entries(filters.value).every(([key, value]) => {
         if (!value) return true;
+
+        // if filter type is sorting, then filter users by sorting value
+        const filterItem = filtersData.value.find(f => f.idx === key);
+        if (filterItem && filterItem.filterType === 'sorting') {
+          const userValue = user[key];
+          const filterValue =
+            userValue && typeof userValue === 'object' && userValue.value
+              ? userValue.value
+              : userValue;
+          return String(filterValue) === String(value);
+        }
+
+        // by default, filter users by checking substring
         return String(user[key] || '')
           .toLowerCase()
           .includes(String(value).toLowerCase());

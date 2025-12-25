@@ -92,11 +92,13 @@ export const useTableContents = (paginatedUsers, currentPageCount, total) => {
   const tableBody = computed(() => {
     return paginatedUsers.value.map(user => {
       return tableHead.map(column => {
-        const value = user[column.slug] || '-';
+        const value = user[column.slug];
+        const displayValue =
+          value && typeof value === 'object' && value.text ? value.text : value || '-';
 
         return {
           slug: column.slug,
-          name: String(value),
+          name: String(displayValue),
         };
       });
     });
